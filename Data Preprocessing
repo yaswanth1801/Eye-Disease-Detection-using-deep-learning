@@ -1,0 +1,37 @@
+# Image VGG19 Image preprocessing
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+# Training set generator with data augmentation
+train_datagen = ImageDataGenerator(
+    rescale=1./255,             # Normalize pixel values to [0, 1]
+    rotation_range=30,          # Random rotation (degrees)
+    width_shift_range=0.1,      # Horizontal translation
+    height_shift_range=0.1,     # Vertical translation
+    shear_range=0.2,            # Shearing
+    zoom_range=0.2,             # Zoom in/out
+    horizontal_flip=True,       # Randomly flip images
+    fill_mode='nearest'         # Fill missing pixels
+)
+
+# Test set generator without augmentation
+test_datagen = ImageDataGenerator(rescale=1./255)
+
+
+IMG_SIZE = (224, 224)
+BATCH_SIZE = 64
+
+train_datagen = ImageDataGenerator(rescale=1./255)
+test_datagen = ImageDataGenerator(rescale=1./255)
+
+train_data = train_datagen.flow_from_directory(
+    "C:/Users/yaswa/OneDrive/Desktop/data_split",
+    target_size=IMG_SIZE,
+    batch_size=BATCH_SIZE,
+    class_mode='categorical'
+)
+
+test_data = test_datagen.flow_from_directory(
+    "C:/Users/yaswa/OneDrive/Desktop/data_split",
+    target_size=IMG_SIZE,
+    batch_size=BATCH_SIZE,
+    class_mode='categorical'
+)

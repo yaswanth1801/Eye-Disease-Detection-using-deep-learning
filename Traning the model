@@ -1,0 +1,52 @@
+import tensorflow as tf
+from tensorflow.keras.applications import VGG19
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Flatten, Dense, Dropout
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+# Load VGG19 with pre-trained ImageNet weights
+base_model = VGG19(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
+
+# Freeze all convolutional blocks (all layers)
+for layer in base_model.layers:
+    layer.trainable = False
+x = base_model.output
+x = Flatten()(x)                         # Flatten the convolutional features
+x = Dense(128, activation='relu')(x)     # Fully connected layer
+x = Dropout(0.5)(x)                       # Prevent overfitting
+predictions = Dense(4, activation='softmax')(x)  # Final output layer
+print(tf.config.list_physical_devices('GPU'))
+# Full model
+model = Model(inputs=base_model.input, outputs=predictions)
+model.compile(optimizer='adam',
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
+train_datagen = ImageDataGenerator(rescale=1./255,
+                                   rotation_range=20,
+                                   zoom_range=0.2,
+                                   horizontal_flip=True)
+
+test_datagen = ImageDataGenerator(rescale=1./255)
+
+train_generator = train_datagen.flow_from_directory(
+    "C:/Users/yaswa/OneDrive/Desktop/data_split/train",
+    target_size=(224, 224),
+    batch_size=64,
+    class_mode='categorical')
+
+test_generator = test_datagen.flow_from_directory(
+    "C:/Users/yaswa/OneDrive/Desktop/data_split/test",
+    target_size=(224, 224),
+    batch_size=64,
+    class_mode='categorical')
+
+# Correct number of classes
+num_classes = train_generator.num_classes
+
+
+
+model.fit(
+    train_generator,
+    epochs=10,
+    validation_data=test_generator
+)
+model.save('vgg19_model.h5')

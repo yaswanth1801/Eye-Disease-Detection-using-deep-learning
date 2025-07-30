@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eye Disease Detection Using Deep Learning</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9f9f9;
+        }
+
+        header, footer {
+            background-color: #004080;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #004080;
+        }
+
+        .architecture-img {
+            width: 100%;
+            max-width: 800px;
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Eye Disease Detection Using Deep Learning</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#model">Model</a></li>
+                <li><a href="#results">Results</a></li>
+                <li><a href="#team">Team</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <section id="home">
+            <h2>Project Overview</h2>
+            <p>
+                This project classifies various types of eye diseases such as <strong>Normal</strong>, 
+                <strong>Cataract</strong>, <strong>Diabetic Retinopathy</strong>, and <strong>Glaucoma</strong>. 
+                These diseases often arise due to factors like age and diabetes. Leveraging the power of 
+                deep learning, we aim to assist in early and accurate detection of these diseases using retinal images.
+            </p>
+        </section>
+
+        <section id="model">
+            <h2>Deep Learning & Transfer Learning</h2>
+            <p>
+                Deep Learning methods, especially Convolutional Neural Networks (CNNs), have proven highly effective 
+                in medical image classification. In our approach, we utilize <strong>Transfer Learning</strong> using 
+                pre-trained models like <strong>Inception V3</strong>, <strong>VGG19</strong>, and <strong>Xception V3</strong>. 
+                These models have been fine-tuned for optimal performance on eye disease datasets.
+            </p>
+
+            <form action="/predict" method="POST" enctype="multipart/form-data">
+                <label for="file">Upload Eye Image:</label>
+                <input type="file" name="file" id="file" required>
+                <button type="submit">Predict</button>
+            </form>
+        </section>
+
+        <section id="results">
+            <h2>Technical Architecture</h2>
+            <p>The following diagram represents the system architecture used in this project:</p>
+            <!-- Replace this with your actual hosted image URL or correct path -->
+            <img src="C:\Users\yaswa\Downloads\ChatGPT Image Jul 29, 2025, 11_32_39 AM.png" alt="Technical Architecture Diagram" class="architecture-img">
+        </section>
+
+        <section id="team">
+            <h2>Team</h2>
+            <p>This project is developed by the Y Yaswanth Reddy, 2025.</p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Eye Disease Detection Project Team</p>
+    </footer>
+
+</body>
+</html>
